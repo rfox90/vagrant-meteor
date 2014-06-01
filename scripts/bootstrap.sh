@@ -36,11 +36,3 @@ curl https://install.meteor.com | /bin/sh
 
 # Meteorite
 npm install -g meteorite
-
-##############################
-# Instructions
-##############################
-
-echo "Finished installing. Next steps:"
-echo "1. Use "vagrant ssh" to connect to the VM"
-echo "2. Start the meteor app with: cd /vagrant && npm start"
