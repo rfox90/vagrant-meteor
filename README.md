@@ -4,26 +4,26 @@ vagrant-meteor
 [Vagrant](http://www.vagrantup.com/) configuration for a [virtual machine](http://en.wikipedia.org/wiki/Virtual_machine)
 that can run [Meteor](https://www.meteor.com/) apps. Can be used on Windows, Mac OS X or Linux.
 
-## How to use
+## Getting started
 
 The following instructions are optimized for Windows users.
 If you have questions or problems after reading and doing the following instructions please open an issue and I will
 try to address your issue.
 
-If you find this useful I would appreciate a [Gittip](https://www.gittip.com/Sanjo/).
-
 ### Installation
 
-1. [Download this repository](https://github.com/Sanjo/vagrant-meteor/archive/master.zip) and unpack the downloaded zip file.
-2. Install [Cygwin](http://www.cygwin.com/install.html) with the packages `openssh` and `rsync`.
-3. Add the `<CYGWIN_INSTALL_DIR>/bin` folder to your [PATH](http://geekswithblogs.net/renso/archive/2009/10/21/how-to-set-the-windows-path-in-windows-7.aspx).
-4. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
-5. Install [Vagrant](http://www.vagrantup.com/downloads.html) (1.6.1 or newer is needed).
+1. Install [Cygwin](http://www.cygwin.com/install.html) with the packages `openssh` and `rsync`.
+2. Add the `<CYGWIN_INSTALL_DIR>/bin` folder to your [PATH](http://geekswithblogs.net/renso/archive/2009/10/21/how-to-set-the-windows-path-in-windows-7.aspx).
+3. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
+4. Install [Vagrant](http://www.vagrantup.com/downloads.html) (1.6.1 or newer is needed).
+5. [Download this repository](https://github.com/Sanjo/vagrant-meteor/archive/master.zip) and unpack the downloaded zip file.
+6. Install and start the Vagrant VM by executing `start.bat`.
+It will take a little bit to download and install everything.
+Read the next part "File Synchronisation" while it installs. ;-)
 
 ### File Synchronisation
 
-The folder is synchronised two times. This is necessary because Meteor doesn't like the shared folders of
-VirtualBox that are usually used.
+The folder is synchronised to two places on the guest. Each synchronized folder has a special purpose.
 
 #### Rsync - one way synchronisation for starting the Meteor app
 
@@ -37,34 +37,23 @@ The folder is also synchronised with the [VirtualBox shared folder feature](http
 Use this folder to make changes in the guest. For example by using Meteorite.
 But don't use this folder to start the Meteor app because Meteor has currently problems with this type of synchronisation that will cause a high CPU usage.
 
-### Start the Vagrant VM
+### Create your first Meteor app
 
-Just run start.bat. First, it will start the VM. Then it will open a SSH connection to the VM and start the automatic file synchronisation.
+Do the following steps in the SSH terminal that opened with executing the `start.bat` script.
 
-### Stop the Vagrant VM
+```bash
+cd /vagrant2
+/vagrant2$ mrt create my-app --example leaderboard
+cd /vagrant/my-app
+mrt
+```
 
-First close the terminals that were opened by start.bat. Then run stop.bat. It will [suspend](https://docs.vagrantup.com/v2/cli/suspend.html) your VM.
+Now open the URL `http://localhost:3000` in your browser. It should show you the leaderboard example.
+Also look into the `vagrant-meteor` folder. It has automatically synchronised the my-app folder.
+You can now make changes to the app that will automatically be synchronized with the Vagrant VM.
 
-### Create a new app
+If you find this useful I would appreciate a [Gittip](https://www.gittip.com/Sanjo/).
 
-Do the following steps in the SSH terminal that was opened by `start.bat`.
+## Further reading
 
-1. `cd /vagrant2`
-2. Create a new app with `mrt create <name>` (see [Meteorite documentation](https://github.com/oortcloud/meteorite/)).
-   You can also use the `meteor` tool if you want.
-
-### Use an existing app
-
-Move your app folder into the downloaded `vagrant-meteor-master` folder.
-
-### Start your app
-
-1. Change to the app directory in the virtual machine (`cd /vagrant/<MY_APP>`)
-2. Start your app with `mrt` (or `meteor`).
-5. You can access the app on your host machine with `http://localhost:3000/`.
-
-### Debugging
-
-1. Start `debug.bat`.
-2. Start your app with `NODE_OPTIONS=--debug=5858 mrt`.
-3. After this you can connect to the app with the IP 127.0.0.1 and the port 5858.
+Check out the wiki for more details.
