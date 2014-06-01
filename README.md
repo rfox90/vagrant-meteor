@@ -23,10 +23,11 @@ Virtualbox that are usually used.
 ### Installation
 
 1. [Download](https://github.com/Sanjo/vagrant-meteor/archive/master.zip) this repository and unpack the downloaded zip file.
-2. Install the latest version of [Vagrant](http://www.vagrantup.com/downloads.html) (1.6.1 or newer is recommended).
-3. Open a shell and change the directory to the unpacked `vagrant-meteor-master` folder.
-4. Run the command `vagrant up` and wait until the installation finished. This will create the virtual machine.
-5. Run the command `vagrant ssh` to connect to the virtual machine. The `vagrant-meteor` folder is mounted to `/vagrant`.
+2. Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+3. Install [Vagrant](http://www.vagrantup.com/downloads.html) (1.6.1 or newer is needed).
+4. Open a shell and change the directory to the unpacked `vagrant-meteor-master` folder.
+5. Run the command `vagrant up` and wait until the installation finished. This will create the virtual machine.
+6. Run the command `vagrant ssh` to connect to the virtual machine. The `vagrant-meteor` folder is mounted to `/vagrant`.
 
 ### Vagrant 101
 
