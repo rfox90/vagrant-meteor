@@ -28,23 +28,36 @@ The folder is synchronised to two places on the guest. Each synchronized folder 
 #### Rsync - one way synchronisation for starting the Meteor app
 
 The folder is synchronised with [Rsync](http://docs.vagrantup.com/v2/synced-folders/rsync.html) to the guest folder `/vagrant`.
-You must use this folder to start the Meteor app.
-Don't change files in the `/vagrant` folder.
+
+* You must use this folder to start the Meteor app.
+* You must use this folder for `mrt add` and `mrt update`.
+* Changes won't be synchronized back to the host and will be deleted after the next sync.
 
 #### Shared Folder - two way synchronisation for file editing
 
 The folder is also synchronised with the [VirtualBox shared folder feature](https://www.virtualbox.org/manual/ch04.html#sharedfolders) to the guest folder `/vagrant2`.
-Use this folder to make changes in the guest. For example by using Meteorite.
-But don't use this folder to start the Meteor app because Meteor has currently problems with this type of synchronisation that will cause a high CPU usage.
+
+* Use this folder to make changes in the guest that should be synchronized with the host.
+* Use this folder to create an app with `mrt create`.
+* After you added or updated smart packages you must copy the smart.json and smart.lock file
+  from `/vagrant` to `/vagrant2` with `cp -f /vagrant/<MY_APP>/smart.* /vagrant2/<MY_APP>/` (see [open issue](https://github.com/Sanjo/vagrant-meteor/issues/4)).
+* Cannot be used to start the Meteor app.
+* Cannot be used for `mrt add`, `mrt install` or `mrt update`
 
 ### Create your first Meteor app
 
 Do the following steps in the SSH terminal that opened with executing the `start.bat` script.
 
 ```bash
+# Create the app
 cd /vagrant2
-/vagrant2$ mrt create my-app --example leaderboard
+mrt create my-app --example leaderboard
+# Add an Atomosphere package
 cd /vagrant/my-app
+mrt add bootstrap3-less
+# Copy the changed smart.json and smart.lock to the host
+cp -f /vagrant/my-app/smart.* /vagrant2/my-app/
+# Start the app
 mrt
 ```
 
