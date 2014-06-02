@@ -69,4 +69,4 @@ If you find this useful I would appreciate a [Gittip](https://www.gittip.com/San
 
 ## Further reading
 
-Check out the wiki for more details.
+Check out the [wiki](https://github.com/Sanjo/vagrant-meteor/wiki) for more details.
