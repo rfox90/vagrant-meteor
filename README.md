@@ -40,7 +40,12 @@ The folder is also synchronised with the [VirtualBox shared folder feature](http
 * Use this folder to make changes in the guest that should be synchronized with the host.
 * Use this folder to create an app with `mrt create`.
 * After you added or updated smart packages you must copy the smart.json and smart.lock file
-  from `/vagrant` to `/vagrant2` with `cp -f /vagrant/<MY_APP>/smart.* /vagrant2/<MY_APP>/` (see [open issue](https://github.com/Sanjo/vagrant-meteor/issues/4)).
+  from `/vagrant` to `/vagrant2` with (see [open issue](https://github.com/Sanjo/vagrant-meteor/issues/4)):
+  
+```bash
+cp -f /vagrant/<MY_APP>/smart.* /vagrant2/<MY_APP>/
+cp -f /vagrant/<MY_APP>/.meteor/packages /vagrant2/<MY_APP>/.meteor/
+```
 * Cannot be used to start the Meteor app.
 * Cannot be used for `mrt add`, `mrt install` or `mrt update`
 
