@@ -11,6 +11,7 @@ apt-get upgrade
 ##############################
 
 apt-get -y install curl imagemagick git python-software-properties
+git config --global url."https://".insteadOf git://
 
 ##############################
 # Configure package repositories
