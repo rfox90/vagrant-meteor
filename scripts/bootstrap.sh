@@ -11,7 +11,6 @@ apt-get upgrade
 ##############################
 
 apt-get -y install curl imagemagick git python-software-properties
-git config --global url."https://".insteadOf git://
 
 ##############################
 # Configure package repositories
@@ -31,6 +30,9 @@ apt-get -y install nodejs
 
 # Install the rest with the vagrant user
 su vagrant
+
+# Fix resolve problem with git:// URLs
+git config --global url."https://".insteadOf git://
 
 # Meteor
 curl https://install.meteor.com | /bin/sh
