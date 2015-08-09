@@ -40,20 +40,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder ".", "/vagrant2"
-  config.vm.synced_folder ".", "/vagrant", type: "rsync",
-    rsync__args: ["--verbose", "--archive", "--delete", "-z", "--copy-links"],
-    rsync__exclude: [
-      ".meteor/local/",
-      ".git/",
-      ".idea/",
-      ".npm/",
-      ".build/",
-      "node_modules/",
-      # Add your own local packages that you created in the app here:
-      # "+ /<MY_APP>/packages/<MY_PACKAGE>/***",
-      "/*/packages/**"
-    ]
+  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder "D:/Documents/GitHub", "/github"
+  
   # Configure the window for gatling to coalesce writes.
   if Vagrant.has_plugin?("vagrant-gatling-rsync")
     config.gatling.latency = 1.5
